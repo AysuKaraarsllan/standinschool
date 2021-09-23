@@ -1,0 +1,65 @@
+<div id="header-search" class="input-group">
+	<select name="category_id" class="form-control innner-search">
+		<option value="0">{{ text_category }}</option>
+		{% for category_1 in categories %}
+			{% if (category_1.category_id)  ==  (category_id) %}
+				<option value="{{ category_1.category_id }}" selected="selected">{{ category_1.name }}</option>
+			{% else %}
+				<option value="{{ category_1.category_id }}">{{ category_1.name }}</option>
+			{% endif %}
+			
+			{% for category_2 in category_1.children %}
+				{% if (category_2.category_id)  ==  (category_id) %}
+					<option value="{{ category_2.category_id }}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ category_2.name }}</option>
+				{% else %}
+					<option value="{{ category_2.category_id }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ category_2.name }}</option>
+				{% endif %}
+				
+				{% for category_3 in category_2.children %}
+					{% if (category_3.category_id)  ==  (category_id) %}
+						<option value="{{ category_3.category_id }}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ category_3.name }}</option>
+					{% else %}
+						<option value="{{ category_3.category_id }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ category_3.name }}</option>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+	</select>
+	<input type="text" name="search" value="{{ search }}" placeholder="{{ text_search }}" class="form-control input-lg" />
+  <span class="input-group-btn">
+    <button type="button" class="btn btn-default btn-lg header-search-btn"><i class="fa fa-search"></i>
+	<span>{{ text_search }}</span>
+	</button>
+  </span>
+</div>
+
+<script>
+$('#header-search button.header-search-btn').bind('click', function() {
+	url = 'index.php?route=product/search';
+	
+	var search = $('#header-search input[name=\'search\']').prop('value');
+
+	if (search) {
+		url += '&search=' + encodeURIComponent(search);
+	}
+
+	var category_id = $('#header-search select[name=\'category_id\']').prop('value');
+
+	if (category_id > 0) {
+		url += '&category_id=' + encodeURIComponent(category_id);
+	}
+	
+		url += '&sub_category=true';
+		url += '&description=true';
+
+//alert (url);
+	location = url;
+});
+
+$('#header-search input[name=\'search\']').bind('keydown', function(e) {
+	if (e.keyCode == 13) {
+		$('#header-search button.header-search-btn').trigger('click');
+	}
+});
+
+</script>

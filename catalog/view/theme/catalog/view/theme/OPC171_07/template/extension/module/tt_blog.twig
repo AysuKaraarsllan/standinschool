@@ -1,0 +1,49 @@
+<div class="blog_latest">
+<div class="blog_latest_new_home">
+<div class="box-heading title_block"><h3><a class="ttblock-heading" href="{{ all_blogs }}">{{ heading_title }}</a></h3></div>
+<div class="customNavigation">
+	<a class="btn prev ttblog_prev"></a>
+	<a class="btn next ttblog_next"></a>
+</div>
+<div class="block_content">
+<div class="row">
+<ul id="ttsmartblog-carousel" class="tt-carousel ttblog-content owl-carousel owl-theme">
+  {% for blog in blogs %}
+  	<li>
+	<div class="blog-content">
+		{% if blog.image %}
+		<div class="ttblog_image_holder blog_image_holder col-xs-12 col-sm-12">
+			<a href="{{ blog.href }}">
+			<img class="image_thumb" src="{{ blog.image_thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" />
+			<div class="blog-hover"></div>
+			</a>
+			<span class="bloglinks">
+				<a class="icon zoom" data-lightbox="example-set" href="{{ blog.image }}" title="Click to view Full Image">
+				<i class="fa fa-search"></i>
+				</a> 
+			</span>
+		</div>
+		{% endif %}
+		
+		<div class="blog-caption blog-sub-content col-xs-12 col-sm-12">
+			<h5 class="post_title"><a href="{{ blog.href }}">{{ blog.title }}</a></h5>
+			<span class="blog-date">
+				<i class="fa fa-calendar"></i>
+				<span class="date">{{ blog.date_added|date('j') }}</span>
+				<span class="month">{{ blog.date_added|date('M-Y') }}</span>
+			</span>
+			<p class="blog-description">{{ blog.description }}</p>
+				<a href="{{ blog.href }}" class="read-more">{{ text_read_more }}</a>
+				<div class="comment"> <a href="{{ blog.href }}"> <i class="fa fa-comments-o"></i> {{ blog.total_comments }} {{ entry_comment }}</a> </div>
+		</div>
+	</div>
+	</li>
+{% endfor %}	
+</ul>
+		{# <div class="btn-view-all">
+		<button type="button" onclick="location='<?php echo $all_blogs; ?>';" class="btn btn-primary"><?php echo $button_all_blogs; ?></button>
+		</div> #}
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,83 @@
+<div class="main-category-list left-main-menu col-sm-3">
+<div class="cat-menu">
+<div class="TT-panel-heading">
+	<span>{{ Menu_heading_title }}</span>
+</div>
+<div class="menu-category">
+<ul class="dropmenu">
+	{% for category in categories %}
+		{% if category.children|length > 0 %}
+			<li class="TT-Sub-List dropdown">
+				<a href="{{ category.href }}" class="TT-Category-List">{{ category.name }}</a>
+				<span class="active_menu"></span>
+		   {% else %}
+		   <li>
+			<a href="{{ category.href }}">{{ category.name }}</a>
+		{% endif %}
+		
+	    {% set i = 0 %}
+		{% set limit = 1 %}
+		{# for i  in i..category.children|length #}
+		{% for i in range(0, limit-1) %}
+			
+			<div class="dropdown-menu">
+			<div class="dropdown-inner">
+				{% if category.column <= 1 %}
+					<ul class="list-unstyled childs_1 single-dropdown-menu">
+					{% else %}
+				 	<ul class="list-unstyled childs_1 mega-dropdown-menu columns-{{ category.column }}" style="width: {{ 200*category.column~'px;' }}">
+				{% endif %}
+				{% set j = i + category.children|length / category.column|round(1, 'ceil') %}
+				{% for i in i..category.children|length %}
+					{% if category.children[i] is defined %}
+						{% if category.column <=1 %}
+							<li class="dropdown" style="width: 100%;">
+						{% else %}
+								{% set cols= category.column %}
+								{% if cols is divisible by(3) %}
+									<li class="dropdown" style="width: {{ 100/category.column~'%;' }}">
+								{% endif %} {# if over.. #}
+
+							<li class="dropdown first" style="width: {{ 100/category.column~'%;' }}">
+						{% endif %}
+								{% if category.children[i]['children_level2']|length > 0 %}
+									<a href="{{ category.children[i]['href'] }}" class="single-dropdown">{{ category.children[i]['name'] }}</a> 									
+									{% else %}				
+									<a href="{{ category.children[i]['href'] }}">{{ category.children[i]['name'] }}</a>		
+								{% endif %}
+						
+								{% if category.children[i]['children_level2'] %}
+									<div class="dropdown-menu">
+									<div class="dropdown-inner">
+									<ul class="list-unstyled childs_2">
+									{% set wi = 0 %}
+									
+									{% for wi in wi..category.children[i]['children_level2']|length %}
+										<li><a href="{{ category.children[i]['children_level2'][wi]['href'] }}">
+										{{ category.children[i]['children_level2'][wi]['name'] }}</a>
+										</li>
+									{% endfor %}		
+									</ul>
+									</div>
+									</div>
+								{% endif %}	
+					       </li>
+					{% endif %}
+					{% endfor %}
+					</ul>
+			</div>
+			</div>
+			
+		{% endfor %}
+		</li>
+		
+{% endfor %}
+				{% if blog_enable == true %}
+					<li> <a href="{{ all_blogs }}">
+					<span data-hover="{{ text_blog }}">{{ text_blog }}</span>
+					</a></li>       
+				{% endif %}
+</ul>
+</div>
+</div>
+</div>

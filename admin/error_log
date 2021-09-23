@@ -1,0 +1,12 @@
+[05-Aug-2020 20:19:52 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Could not load model marketplace/event!' in /home/mmsstand/public_html/system/engine/loader.php:89
+Stack trace:
+#0 /home/mmsstand/public_html/admin/controller/extension/module/pp_login.php(285): Loader->model('marketplace/eve...')
+#1 [internal function]: ControllerExtensionModulePPLogin->install(Array)
+#2 /home/mmsstand/public_html/system/engine/action.php(79): call_user_func_array(Array, Array)
+#3 /home/mmsstand/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#4 /home/mmsstand/public_html/admin/controller/extension/extension/module.php(31): Loader->controller('extension/modul...')
+#5 [internal function]: ControllerExtensionExtensionModule->install()
+#6 /home/mmsstand/public_html/system/engine/action.php(79): call_user_func_array(Array, Array)
+#7 /home/mmsstand/public_html/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#8 [internal function]: ControllerStartupRouter->index()
+#9 /home/mmsst in /home/mmsstand/public_html/system/engine/loader.php on line 89

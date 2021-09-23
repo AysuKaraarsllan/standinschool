@@ -1,0 +1,219 @@
+{{ header }}
+<div id="product-category" class="container product-category">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+
+	  <!-- Category Description START -->
+      <h1 class="category-name">{{ heading_title }}</h1>
+
+      
+	  <div class="category-description">
+      <div class="row">
+	    {% if thumb %}
+        <div class="category-image col-sm-2">
+			<div class="category-bg">
+				<a class="cat-img"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></a>
+			</div>
+		</div>
+        {% endif %}
+		
+		{% if thumb or description %}
+		<div class="block-description col-sm-10">
+        {% if description %}
+        <div class="category-content">{{ description }}</div>
+        {% endif %}
+		
+		<!-- Category listing START -->
+		  {% if categories %}
+		  <div class="category-list">
+		  <h3>{{ text_refine }}</h3>
+			<div class="subcategory-heading">
+			  <ul>
+				{% for category in categories %}
+				<li>
+					<div class="subcategory-image">
+						{% if category.img %}
+							<a href="{{ category.href }}"><img src="{{ category.img }}" alt="" /></a>
+						{% endif %}
+					</div>
+					<h5><a href="{{ category.href }}">{{ category.name }}</a></h5>
+				</li>
+				{% endfor %}
+			  </ul>
+			</div>
+		  </div>
+		  {% endif %}
+	  	<!-- Category listing END -->
+		<p class="category-compare"><a href="{{ compare }}" id="compare-total">{{ text_compare }}</a></p>
+		</div>
+		{% endif %}
+		
+		</div>
+		</div>
+      
+
+	  <!-- Category Description END -->
+
+      {% if products %}
+	  
+	  <!-- Category filter START -->
+	  <div class="category-filter">
+	    <!-- Grid-List Buttons -->
+        <div class="col-md-2 filter-grid-list">
+          <div class="btn-group">
+            <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
+            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
+          </div>
+        </div>
+
+		<!-- Show Products Selection -->
+		<div class="filter-show">
+          <div class="col-md-4 text-right filter-text">
+            <label class="input-group-addon control-label" for="input-limit">{{ text_limit }}</label>
+		  </div>
+		  <div class="col-md-8 text-right filter-selection">
+            <select id="input-limit" class="form-control" onchange="location = this.value;">
+              {% for limits in limits %}
+              {% if limits.value == limit %}
+              <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+              {% else %}
+              <option value="{{ limits.href }}">{{ limits.text }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+		<!-- Sort By Selection -->
+		<div class="filter-sort-by">
+		  <div class="col-md-3 text-right filter-text">
+            <label class="input-group-addon control-label" for="input-sort">{{ text_sort }}</label>
+		  </div>
+          <div class="col-md-9 text-right filter-selection">
+            <select id="input-sort" class="form-control" onchange="location = this.value;">
+              {% for sorts in sorts %}
+              {% if sorts.value == '%s-%s'|format(sort, order) %}
+              <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+              {% else %}
+              <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+	  <!-- Category filter END -->
+
+	  <!-- Category products START -->
+	  <div class="category-products">
+      <div class="row">
+	  {% for product in products %}
+        <div class="product-layout product-list col-xs-12">
+          <div class="product-thumb row">
+		  	<div class="ttimge-bg"></div>
+            <div class="image">
+			{% if product.thumb_swap %}
+					<a href="{{ product.href }}">
+						<img class="image_thumb" src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" />
+						<img class="image_thumb_swap" src="{{ product.thumb_swap }}" title="{{ product.name }}" alt="{{ product.name }}" />
+					</a>
+				{% else %}
+					<a href="{{ product.href }}">
+						<img class="img-responsive" src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					</a>
+			{% endif %}
+			{% if product.special %}
+			  <div class="sale-icon">Sale</div>
+			  <span class="percent">-{{ product.percent }}%</span>
+			{% endif %}
+					<button class="btn-wishlist" title="{{ button_wishlist }}"  onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i>
+					<span title="{{ button_wishlist }}">{{ button_wishlist }}</span>
+				</button>
+
+		  </div>
+            <div class="thumb-description">
+              <div class="caption">
+				<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+				{% if product.rating %}
+				<div class="rating">
+				  {% else %}
+					<div class="rating no-rating">
+				  {% endif %}
+				  {% for i in 1..5 %}
+				  {% if product.rating < i %}
+				  <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
+				  {% else %}
+				  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+				  {% endif %}
+				   {% endfor %}
+				</div>
+
+                <p class="description">{{ product.description }}</p>
+				</div>
+				
+			<div class="button-wrapper">
+				{% if product.price %}
+                  <div class="price">
+				  {% if not product.special %}
+                    {{ product.price }}
+                  {% else %}
+				    <span class="price-new">{{ product.special }}</span>
+					<span class="price-old">{{ product.price }}</span>
+				  {% endif %}
+                  {% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %}
+				</div>
+                {% endif %}
+			  <div class="button-group">
+				 <button class="btn-cart{% if product.product_quantity<=0 %} {{ "disabled" }} {% endif %}" type="button" title="{% if product.product_quantity <=0 %}{{ product.product_stock }}{% else %}{{ button_cart }}{% endif %}" onclick="{% if product.product_quantity <=0 %}{% else %}cart.add('{{ product.product_id }}'){% endif %}"{% if product.product_quantity <=0 %}{{ "" }} {% endif %}>
+				 {% if product.product_quantity <=0 %}
+					{{ "<i class=\"fa fa-shopping-cart\"></i><span class=\"out of stock\">"~product.product_stock }}
+					{% else %} 
+					{{ "<i class=\"fa fa-shopping-cart\"></i> <span class=\"hidden-xs hidden-sm hidden-md\">"~button_cart }}
+				{% endif %}
+				</span></button>
+				<button class="btn-compare" title="{{ button_compare }}"  onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i>
+					<span title="{{ button_compare }}">{{ button_compare }}</span>
+				</button>
+				<button class="btn-quickview" type="button" title="{{ button_quickview }}" onclick="tt_quickview.ajaxView('{{ product.href }}')"><i class="fa fa-eye"></i>
+				<span title="{{ button_quickview }}">{{ button_quickview }}</span>
+				</button>
+              </div>
+			  </div>
+		  </div>   
+        </div>
+		</div>
+        {% endfor %}
+	  </div>
+	  </div>
+	  <!-- Category products END -->
+	  <!-- Category pagination START -->
+      <div class="category-pagination">
+        <div class="col-xs-6 text-left">{{ results }}</div>
+        <div class="col-xs-6 text-right">{{ pagination }}</div>
+      </div>
+	  <!-- Category pagination END -->
+      {% endif %}
+      {% if not categories and not products %}
+      <p class="text-empty">{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}
+	  </div>
+    {{ column_right }}
+	</div>
+</div>
+{{ footer }}

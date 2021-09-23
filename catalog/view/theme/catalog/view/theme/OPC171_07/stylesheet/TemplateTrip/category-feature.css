@@ -1,0 +1,172 @@
+/*-------------------------------------------- Category feature CSS Start --------------------------------------*/
+.tt-category-featured {
+	float: left;
+	vertical-align: top;
+	position: relative;
+	width: 100%;
+	margin: 15px 0;
+	padding: 0 30px;
+	background: #fff;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-khtml-border-radius: 8px;
+}
+.tt-category-featured .container {
+  position: relative;
+}
+.tt-category-featured .box-heading {
+  display: none;
+}
+.tt-category-featured .ttfcat-items {
+	float: left;
+	position: relative;
+	width: 100%;
+	padding: 40px 0;
+}
+.tt-category-featured .ttfcat-items .item {
+	float: left;
+	text-align: center;
+	width: 100%;
+}
+.tt-category-featured .ttfcat-items .content {
+	float: left;
+	width: 100%;
+	overflow: hidden;
+}
+.tt-category-featured .category-feature .image {
+	padding: 0;
+	margin: 3px 0 0;
+	float: none;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+	height: 160px;
+	width: 160px;
+	display: inline-block;
+	vertical-align: text;
+}
+.tt-category-featured .ttfcat-items .content:hover .image {
+	background: #e6363c;
+}
+.tt-category-featured .ttfcat-items .item .image a {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	transition: all 900ms ease-in-out 0s;
+	-webkit-transition: all 900ms ease-in-out 0s;
+	-moz-transition: all 900ms ease-in-out 0s;
+	-o-transition: all 900ms ease-in-out 0s;
+	-ms-transition: all 900ms ease-in-out 0s;
+	float: left;
+	width: 100%;
+	padding: 40px;
+}
+.tt-category-featured .ttfcat-items .item:hover .image a {
+	transform: rotateY(360deg);
+	-webkit-transform: rotateY(360deg);
+	-moz-transform: rotateY(360deg);
+	-o-transform: rotateY(360deg);
+	-ms-transform: rotateY(360deg);
+}
+.tt-category-featured .ttfcat-items .item .image a img {
+	max-width: 100%;
+	margin: 0 auto;
+	color: #fff;
+}
+.tt-category-featured .ttfcat-items .item .image a:hover img {
+	color: #e6363c;
+}
+.tt-category-featured .category-feature .caption {
+	padding: 10px 0 0;
+	text-align: center;
+	float: left;
+	width: 100%;
+}
+.tt-category-featured .category-feature .caption .cat-sub {
+	display: none;
+}
+.tt-category-featured .products-carousel .owl-buttons {
+	display: none;
+}
+.tt-category-featured .caption .cat-title > h4 {
+  margin: 0;
+}
+.tt-category-featured .caption .cat-title > h4 a {
+	color: #111111;
+	font: 500 14px/28px "Poppins",Helvetica,sans-serif;
+	letter-spacing: 1px;
+	margin: 0;
+	position: relative;
+	text-transform: capitalize;
+	padding: 0;
+	float: left;
+	width: 100%;
+}
+.tt-category-featured .item:hover .caption .cat-title > h4 a {
+	color: #000000;
+}
+.category-feature.tt-carousel.row.owl-carousel.owl-theme {
+	width: auto;
+	margin: 0;
+}
+/*-------------------------------------------- Category feature custome CSS start --------------------------------------*/
+.tt-category-featured .customNavigation {
+	position: static;
+	opacity: 0;
+	-moz-opacity: 0;
+	-khtml-opacity: 0;
+	-webkit-opacity: 0;
+	transition: all 400ms ease-in-out;
+}
+.tt-category-featured:hover .customNavigation {
+	opacity: 1;
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	-webkit-opacity: 1;
+}
+.tt-category-featured .customNavigation a {
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	z-index: 2;
+}
+.tt-category-featured .customNavigation a.prev {
+	left: 15px;
+	right: auto;
+}
+.tt-category-featured .customNavigation a.next {
+	left: auto;
+	right: 15px;
+}
+/*-------------------------------------------- Category feature custome CSS End --------------------------------------*/
+/*-------------------------------------------- Category feature CSS End --------------------------------------*/
+@media (max-width: 767px) {
+	.tt-category-featured .category-feature .image {
+		height: 145px;
+		width: 145px;
+	}
+	.tt-category-featured {
+		margin: 0 0 20px;
+		padding: 0 10px;
+	}
+}
+@media (min-width: 480px) and (max-width: 481px) {
+	.tt-category-featured .category-feature .caption::before,
+	.tt-category-featured .caption .cat-title > h4 a::after {
+		width: auto;
+	}
+}
+@media (max-width: 480px) {
+	.tt-category-featured .caption .cat-title > h4 a {
+		font-size: 14px;
+	}
+	.category-feature.tt-carousel.row.owl-carousel.owl-theme {
+		margin: 0;
+	}
+	.tt-category-featured .ttfcat-items .content {
+		float: none;
+		width: 100%;
+	}
+}

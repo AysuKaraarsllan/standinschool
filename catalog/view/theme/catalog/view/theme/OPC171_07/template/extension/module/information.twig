@@ -1,0 +1,10 @@
+<div class="sidebar panel panel-default information-list">
+<div class="panel-heading">{{ heading_title3 }}</div>
+  <div class="list-group">
+    {% for information in informations %}
+    <a href="{{ information.href }}" class="list-group-item">{{ information.title }}</a>
+    {% endfor %}
+    <a href="{{ contact }}" class="list-group-item">{{ text_contact }}</a>
+    <a href="{{ sitemap }}" class="list-group-item">{{ text_sitemap }}</a>
+  </div>
+</div>

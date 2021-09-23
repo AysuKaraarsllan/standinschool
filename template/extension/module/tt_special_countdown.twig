@@ -1,0 +1,118 @@
+<div class="tt-special-countdown col-sm-12">
+<div class="tt-countdown-carousel list-products">
+<div class="box-heading"><h3>{{ heading_title }}</h3></div>
+<div class="ttcountdown-inner">
+<div class="special-countdown products-carousel row">
+	{% for product in products %}
+	{% if product.to_date  !=  '0000-00-00' %}
+		<div class="product-layouts">
+    	<div class="product-thumb transition">
+			<div class="countdown-images col-sm-5 col-xs-5">
+				<div class="special-image">
+						<a href="{{ product.href }}">
+							<img class="image_thumb" src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" />
+						</a>
+					<div class="countdown-labele">
+					  <span class="hot">{{ text_hot }}</span> 
+					</div>
+				</div>
+				<div class="additional-images-container">
+					{% if product.images %}
+						<div class="special-additional-images">
+							{% for image in product.images %}
+								<div class="image-additional">
+								<img src="{{ image.thumb }}" title="{{ heading_title }}" data-image-large-src="{{ image.large }}" alt="{{ heading_title }}" />
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			<div class="thumb-description col-sm-7 col-xs-7">
+				<div class="product-description">
+				<div class="caption">
+					<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+					
+					{% if product.rating %}
+					<div class="rating">
+					{% else %}
+						<div class="rating no-rating">
+					{% endif %}
+					  {% for i in 1..5 %}
+					  {% if product.rating < i %}
+					  <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
+					  {% else %}
+					  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+					  {% endif %}
+					   {% endfor %}
+					</div>
+				
+					{% if product.price %}
+						<div class="price">
+						  {% if not product.special %}
+						  	{{ product.price }}
+						  {% else %}
+							  <span class="price-new">{{ product.special }}</span> 
+							  <span class="price-old">{{ product.price }}</span>
+						  {% endif %}
+						  {% if product.tax %}
+						  	<span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+						  {% endif %}
+						  <span class="percent"> {{ text_save }} {{ product.percent }} %</span>
+						</div>
+					{% endif %}
+				</div>
+				
+	  				{% if product.to_date !=  '0000-00-00' %}
+					{% set date_time = product.to_date|date('Y-m-d') %}
+						<div id="countdown_{{ product.product_id }}" class="item-countdown" data-date="{{ date_time }}"></div>
+					{% endif %}
+					
+					<div class="ttqtyprogress">
+					<div class="QuantityAvailable">{% if product.product_quantity <=0 %}{{product_unavailable}}:{% else %}{{product_available}}:{% endif %}</div>
+					<div class="quantity">{{product.product_quantity}}</div>
+					<div class="progress">
+					<div class="progress-bar" role="progressbar"></div>
+					</div>
+					</div>
+				
+				<div class="button-group">
+				<button class="btn-cart{% if product.product_quantity<=0 %} {{ "disabled" }} {% endif %}" type="button" title="{% if product.product_quantity <=0 %}{{ product.product_stock }}{% else %}{{ button_cart }}{% endif %}" onclick="{% if product.product_quantity <=0 %}{% else %}cart.add('{{ product.product_id }}'){% endif %}"{% if product.product_quantity <=0 %}{{ "" }} {% endif %}>
+				 {% if product.product_quantity <=0 %}
+					{{ "<span class=\"out of stock\">"~product.product_stock }}
+					{% else %} 
+					{{ "<i class=\"fa fa-shopping-cart\"></i> <span class=\"hidden-xs hidden-sm hidden-md\">"~button_cart }}
+				{% endif %}
+				</span></button>
+				<button class="btn-wishlist" title="{{ button_wishlist }}"  onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i>
+				<span title="{{ button_wishlist }}">{{ button_wishlist }}</span>
+				</button>
+				<button class="btn-compare" title="{{ button_compare }}"  onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i>
+				<span title="{{ button_compare }}">{{ button_compare }}</span>
+				</button>
+				<button class="btn-quickview" type="button" title="{{ button_quickview }}" onclick="tt_quickview.ajaxView('{{ product.href }}')"><i class="fa fa-eye"></i>
+				<span title="{{ button_quickview }}">{{ button_quickview }}</span>
+				</button>
+			  </div>
+				</div>
+			</div>
+			{% set date_time = product.to_date|date('Y-m-d') %}
+				<script>
+				  jQuery(document).ready(function($){
+				  $(".item-countdown").each(function(){
+				  var date = $(this).data('date');
+				  $(this).lofCountDown({
+					  TargetDate:date,
+					  DisplayFormat:"<div>%%D%% <span>{{ text_days}}</span></div><div>%%H%% <span>{{ text_hours }}</span></div><div>%%M%% <span>{{ text_minutes }}</span></div><div>%%S%% <span>{{ text_seconds }}</span></div>"
+					});
+				  });
+				  });   
+			   </script>	  
+		</div>
+		</div>
+		{% endif %}
+	{% endfor %}
+</div>
+</div>
+</div>
+</div>

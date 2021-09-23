@@ -1,0 +1,192 @@
+<footer>
+{% if footer_top %}
+<div class="footer-top">
+{{ footer_top }}
+</div>
+{% endif %}
+<div class="footer-container">
+<div class="container">
+	<div class="row">
+	{% if footer_left %}
+	<div class="footer-column footer-left-cms col-sm-3">
+	{{ footer_left }}
+	</div>
+	{% endif %}
+      <!--<div class="col-sm-3 footer-column {{ 'footer-' ~ text_service|replace({' ': '-'})|lower }}">
+        <h5>{{ text_service }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+          <li><a href="{{ return }}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+        </ul>
+      </div>-->
+      <div class="col-sm-2 footer-column {{ 'footer-' ~ text_extra|replace({' ': '-'})|lower }}">
+        <h5>{{ text_extra }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li>
+		  <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-2 footer-column {{ 'footer-' ~ text_account|replace({' ': '-'})|lower }}">
+        <h5>{{ text_account }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ account }}">{{ text_account }}</a></li>
+          <li><a href="{{ order }}">{{ text_order }}</a></li>
+          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+		  <li><a href="{{ return }}">{{ text_return }}</a></li>
+        </ul>
+      </div>
+	  {% if informations %}
+      <div class="col-sm-2 footer-column {{ 'footer-' ~ text_information|replace({' ': '-'})|lower }}">
+        <h5>{{ text_information }}</h5>
+        <ul class="list-unstyled">
+         {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+	{% if footer_right %}
+	  <div class="footer-column footer-right-cms col-sm-3">
+	 {{ footer_right }}
+	  </div>
+	{% endif %}
+		</div>
+	</div>
+</div>
+<div class="footer-bottom">
+	<div class="container">
+	<div class="row">
+	<div class="footer-bottom-link col-sm-6">
+		<p>{{ powered }}</p>
+	</div>
+	{% if footer_bottom %}
+	<div class="footer-bottom-cms col-sm-6">
+ 	{{ footer_bottom }}
+	</div>
+	{% endif %}
+	</div>
+</div>
+</div>
+</footer>
+</div>
+
+{% if module_tt_live_search_status %}
+
+			<script><!--
+				var tt_live_search = {
+					selector: '#header-search input[name=\'search\']',
+					text_no_matches: '{{ text_empty }}',
+					height: '50px'
+				}
+
+				$(document).ready(function() {
+					var html = '';
+					html += '<div class="live-search">';
+					html += '	<ul>';
+					html += '	</ul>';
+					html += '<div class="result-text"></div>';
+					html += '</div>';
+
+					//$(tt_live_search.selector).parent().closest('div').after(html);
+					$(tt_live_search.selector).after(html);
+
+					$(tt_live_search.selector).autocomplete({
+						'source': function(request, response) {
+							var filter_name = $(tt_live_search.selector).val();
+							var cat_id = 0;
+							var module_tt_live_search_min_length = '{{ module_tt_live_search_min_length|abs }}';
+							if (filter_name.length < module_tt_live_search_min_length) {
+								$('.live-search').css('display','none');
+							}
+							else{
+								var html = '';
+								html += '<li style="text-align: center;height:10px;">';
+								html +=	'<img class="loading" src="image/catalog/demo/banners/loading.gif" />';
+								html +=	'</li>';
+								$('.live-search ul').html(html);
+								$('.live-search').css('display','block');
+
+								$.ajax({
+									url: 'index.php?route=extension/module/tt_live_search&filter_name=' +  encodeURIComponent(filter_name),
+									dataType: 'json',
+									success: function(result) {
+										var products = result.products;
+										$('.live-search ul li').remove();
+										$('.result-text').html('');
+										if (!$.isEmptyObject(products)) {
+											var show_image = {{ module_tt_live_search_show_image|abs }};
+											var show_price = {{ module_tt_live_search_show_price|abs }};
+											var show_description = {{ module_tt_live_search_show_description|abs }};
+											$('.result-text').html('<a href="{{ module_tt_live_search_href }}'+filter_name+'" class="view-all-results">{{ text_view_all_results|e }} ('+result.total+')</a>');
+
+											$.each(products, function(index,product) {
+												var html = '';
+
+												html += '<li>';
+												html += '<a href="' + product.url + '" title="' + product.name + '">';
+												if(product.image && show_image){
+													html += '	<div class="product-image col-sm-3 col-xs-4"><img alt="' + product.name + '" src="' + product.image + '"></div>';
+												}
+												html += '<div class="search-description col-sm-9 col-xs-8">';
+												html += '	<div class="product-name">' + product.name ;
+												if(show_description){
+													html += '<p>' + product.extra_info + '</p>';
+												}
+												html += '</div>';
+												if(show_price){
+													if (product.special) {
+														html += '	<div class="product-price"><span class="special">' + product.price + '</span><span class="price">' + product.special + '</span></div>';
+													} else {
+														html += '	<div class="product-price"><span class="price">' + product.price + '</span></div>';
+													}
+												}
+												html += '</div>';
+												html += '<span style="clear:both"></span>';
+												html += '</a>';
+												html += '</li>';
+												$('.live-search ul').append(html);
+											});
+										} else {
+											var html = '';
+											html += '<li style="text-align: center;height:10px;">';
+											html +=	tt_live_search.text_no_matches;
+											html +=	'</li>';
+
+											$('.live-search ul').html(html);
+										}
+										$('.live-search').css('display','block');
+										return false;
+									}
+								});
+							}
+						},
+						'select': function(product) {
+							$(tt_live_search.selector).val(product.name);
+						}
+					});
+
+					$(document).bind( "mouseup touchend", function(e){
+					  var container = $('.live-search');
+					  if (!container.is(e.target) && container.has(e.target).length === 0)
+					  {
+					    container.hide();
+					  }
+					});
+				});
+			//--></script>
+		{% endif %}
+
+{% for script in scripts %}
+<script src="{{ script }}"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body></html>

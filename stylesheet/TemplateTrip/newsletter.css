@@ -1,0 +1,399 @@
+/* newsletter popup */
+.b-close{
+	display: block;
+}
+.b-close::before {
+	background: rgba(0, 0, 0, 0) url("images/sprite.png") no-repeat scroll -72px -325px;
+	content: "";
+	height: 25px;
+	left: -3px;
+	position: absolute;
+	right: auto;
+	top: 3px;
+	transition: all 0.5s ease-in-out 0ms;
+	-webkit-transition: all 0.5s ease-in-out 0ms;
+	-moz-transition: all 0.5s ease-in-out 0ms;
+	-o-transition: all 0.5s ease-in-out 0ms;
+	-ms-transition: all 0.5s ease-in-out 0ms;
+	width: 25px;
+	z-index: 1;
+}
+#popup2:hover .b-close:before {
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+}
+.b-close span { display:none; }
+.newletter-popup {
+	background: #f5f5f5;
+	background-attachment: scroll;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-size: contain;
+	-webkit-background-position: center bottom;
+	-moz-background-position: center bottom;
+	-o-background-position: center bottom;
+	-webkit-background-repeat: no-repeat;
+	-moz-background-repeat: no-repeat;
+	-o-background-repeat: no-repeat;
+	background-repeat: no-repeat;
+	top: 50% !important;
+	margin-top: -235px;
+	position: fixed !important;
+	text-align: center;
+	display: none;
+	height: auto;
+	width: 600px;
+}
+.newslatter-img {
+	background: #ffffff url("images/newsletter.jpg") no-repeat scroll 0 center;
+	height: 470px;
+	padding: 0;
+	width: 100%;
+	position: absolute;
+}
+.newletter-popup .box {
+	background: #fff none repeat scroll 0 0;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	float: right;
+	margin: 30px;
+	padding: 30px 10px;
+	text-align: center;
+	height: 410px;
+}
+.newletter-popup #boxes .newletter-title h2 {
+	font-weight: 400;
+	color: #333333;
+	font-size: 26px;
+	margin: 0;
+	padding: 70px 0 0;
+	position: relative;
+	text-transform: capitalize;
+}
+.newletter-popup .newletter-title {
+  float: left;
+  position: relative;
+  width: 100%;
+}
+.newletter-popup .newletter-title::before {
+	background: rgba(0, 0, 0, 0) url("images/sprite.png") repeat scroll -29px -749px;
+	content: "";
+	display: inline-block;
+	vertical-align: top;
+	float: left;
+	height: 55px;
+	left: 0;
+	margin: 0 auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 55px;
+}
+.newletter-popup .newleter-content {
+  float: left;
+  width: 100%;
+}
+#boxes .box-content label {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 22px;
+	margin: 0;
+	cursor: pointer;
+	color: #666666;
+}
+#boxes .box-content label:hover {
+	color: #000000;
+}
+#boxes  #frm_subscribe .required{
+	color: #f00;
+	padding-right: 5px;
+}
+#boxes #frm_subscribe #subscribe_pemail {
+	background-color: #f5f5f5;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	height: 45px;
+	padding: 5px 15px;
+	width: 90%;
+	text-align: center;
+	color: #666;
+	margin: 30px 0 30px;
+}
+#boxes .box-content .subscribe-bottom {
+	margin-top: 30px;
+}
+#boxes .box-content .subscribe-bottom #newsletter_popup_dont_show_again{
+	display: inline-block;
+	margin: 0;
+	vertical-align: top;
+}
+#boxes  #frm_subscribe #notification{
+	color: #c22312;
+	float: left;
+	font-size: 14px;
+	text-align: center;
+	width: 100%;
+}
+#boxes  #frm_subscribe #notification .success{
+	color: #4caf50;
+}
+#popup2{
+	cursor: pointer;
+	height: 25px;
+	line-height: 24px;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+	width: 25px;
+}
+.popup-button {
+  display: inline-block;
+  float: none;
+  text-align: center;
+  vertical-align: top;
+  width: 100%;
+}
+/* newsllter */
+#dialog-normal .newletter-title {
+	float:left;
+}
+#newletter-boxes {
+	float: left;
+	width: 100%;
+}
+#dialog-normal .newletter-title h2 {
+	position: relative;
+	border: medium none;
+	color: #fff;
+	float: left;
+	font: 500 24px/47px "Poppins",Helvetica,sans-serif;
+	margin: 0;
+	padding: 0 0 0 60px;
+	text-align: left;
+	text-transform: capitalize;
+	width: 100%;
+}
+#dialog-normal .newletter-title .tt-title::before {
+	background: rgba(0, 0, 0, 0) url("images/sprite.png") repeat scroll -28px -679px;
+	content: "";
+	height: 50px;
+	left: 0;
+	position: absolute;
+	width: 55px;
+	top: 0;
+	bottom: 0;
+	margin: 0 auto;
+}
+#dialog-normal .newleter-content{    
+	float:right;
+	max-width: 700px;
+	margin: 3px 0;
+}
+#form_subscribe{
+	float: left;
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+.newletter-subscribe {
+  float: left;
+  padding: 21px 0;
+  width: 100%;
+}
+.newletter-subscribe .box {
+  float: left;
+  width: 100%;
+}
+#subscribe_email {
+	height: 42px;
+	background: #ffffff none repeat scroll 0 0;
+	border: none;
+	border-bottom: 1px solid #e5e5e5;
+	color: #333;
+	float: left;
+	overflow: hidden;
+	padding: 0 125px 0 15px;
+	width: 100%;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-khtml-border-radius: 8px;
+}
+#subscribe_email::-webkit-input-placeholder{
+  color: #333;
+}
+#subscribe_email::-moz-placeholder{
+  color: #333;
+}
+#subscribe_email:-ms-input-placeholder{
+  color: #333;
+}
+#subscribe_email:-moz-placeholder {
+  color: #333;
+}
+#subscribe .btn {
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 28px;
+	padding: 6px 20px;
+	background: #eea337 none repeat scroll 0 0;
+	border-radius: 0 8px 8px 0;
+	-moz-border-radius: 0 8px 8px 0;
+	-webkit-border-radius: 0 8px 8px 0;
+	-khtml-border-radius: 0 8px 8px 0;
+	color: #fff;
+	height: 42px;
+	letter-spacing: 1px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border: 1px solid #eea337;
+}
+#subscribe .btn:hover {
+	background: #000;
+	color: #fff;
+	border: 1px solid #000;
+}
+.newletter-subscribe .button i {
+  display: none;
+}
+#notification-normal{
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px; 
+	-khtml-border-radius: 10px;
+	bottom: auto;
+	float: left;
+	overflow: hidden;
+	position: absolute;
+	top: 50px;
+	width: 97%;
+}
+#notification-normal div{
+	background: #dff0d8;
+	color: #3c763d;
+	font-size: 14px;
+	padding: 10px 15px;
+}
+#notification-normal div.warning{
+	background: #f2dede;
+	color: #a94442;
+}
+@media(max-width:1199px){
+	#dialog-normal .newletter-title h2 {
+		font-size: 20px;
+	}
+}
+@media(max-width:991px){
+	#dialog-normal .newletter-title {
+		display: inline-block;
+		float: none;
+		vertical-align: top;
+		padding: 0 0 10px;
+		width: auto;
+	}
+	#dialog-normal .newletter-title .tt-title::before {
+		display: inline-block;
+	  	float: none;
+	  	vertical-align: top;
+	}
+	#dialog-normal .newleter-content {
+	  	display: inline-block;
+	  	float: none;
+		padding: 0;
+	  	vertical-align: top;
+		width: 500px;
+	}
+	.newletter-subscribe {
+		padding: 10px 0;
+	}
+}
+@media(max-width:767px){ 
+	#dialog-normal .newleter-content {
+		width: 460px;
+	}
+}
+@media(max-width:600px){
+	.newletter-popup {
+		width: 300px;
+		top: 2% !important;
+		margin: 0;
+		height: 100%;
+		overflow-y: auto;
+	}
+	.newslatter-img {
+		position: static;
+	}
+	.newletter-popup .box {
+		width: 100%;
+		margin: 0;
+	}
+}
+@media(max-width:480px){
+	.newletter-popup {
+		width: 300px;
+		margin: 0;
+		top: 1% !important;
+		height: 100%;
+		overflow-y: auto;
+	}
+	.newslatter-img {
+		width: 100%;
+		height: 470px;
+	}
+	.newletter-popup .box {
+		width: 100%;
+	}
+	.newletter-popup #boxes .newletter-title h2 {
+		font-size: 22px;
+		line-height: 24px;
+	}
+	#boxes #frm_subscribe #subscribe_pemail {
+		width: 80%;
+	}
+	#dialog-normal .newletter-title h2 { 
+		font: 500 14px/26px "Poppins",sans-serif;
+		padding: 40px 0 0;
+	}
+	#dialog-normal .newletter-title .tt-title::before {
+	  	left: 0;
+	  	margin: 0 auto;
+	  	position: absolute;
+	  	right: 0;
+	  	top: -10px;
+	}
+	#dialog-normal .newleter-content {
+		width: 300px;
+	}
+	.newletter-subscribe {
+		padding: 25px 0 15px;
+	} 
+	#subscribe .btn {
+		padding: 11px;
+	}
+	.newletter-subscribe .button > span {
+		display: none;
+	}
+	.newletter-subscribe .button > i {
+	  display: block;
+	  font-size: 18px;
+	}
+	.newletter-subscribe .button > i:hover {
+		color: #fff;
+	}
+	#subscribe_email {
+		padding: 0 50px 0 10px;
+	}
+}

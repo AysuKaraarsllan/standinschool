@@ -1,0 +1,118 @@
+{{ header }}
+<div id="module-ttblog-details" class="container blog-blog">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="row">
+  	{{ column_left }}
+    {% if column_left  and  column_right %}
+    	{% set class = 'col-sm-6' %}
+     {% elseif  column_left  or  column_right %}
+    	{% set class = 'col-sm-9' %}
+     {% else %}
+    	{% set class = 'col-sm-12' %}
+	{% endif %}
+    <div id="content" class="{{ class }} blog-detail">{{ content_top }}
+      <h1>{{ heading_title }}</h1>
+	  <div class="blog-post">
+		  {% if blogs.image %}
+				<div class="blog_image_holder">
+					<img itemprop="image" src="{{ blogs.image }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="imageFeatured" />
+				</div>
+		  {% endif %}
+	    <div class="blog-detail-content">
+	  	<div class="page-item-title"><h1>{{ heading_title }}</h1></div>
+		<div class="blog-tool">
+			<span class="date-time">{{ date }}</span>
+			<!--<div class="comment"> <i class="fa fa-comments-o"></i> <?php echo $blogs['total_comments']; ?></div> #}-->
+		</div>
+		<div class="article-desc"> <p>{{ description }}</p> </div>
+	  </div>
+	  </div>
+
+      {% if success %}
+      <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }}<button type="button" class="close" data-dismiss="alert">&times;</button></div>
+      {% endif %}
+	
+	  <div class="blog-extra">
+      {% if blog_comments %}
+		<div id="article_comments">
+	      <h3 class="title_block"><span class="ttblock-heading">{{ text_your_comments }}</span></h3>
+		  <div class="comments-block">
+		  <div id="comments">
+		    {% for blog_comment in blog_comments %}
+		  	<ul class="comment-list">
+		  <li class="panel panel-default">
+			<div class="comment-content">
+			  <div class="blog-tool">
+			 	<img class="avatar" alt="Avatar" src="../../stylesheet/TemplateTrip/images/avatar-author-default.jpg"/>
+				<div class="name">{{ blog_comment.author }}</div>
+				<div class="created"><span class="commentTime">{{ blog_comment.date_added }}</span></div>
+				<p>{{ blog_comment.comment }}</p>
+			  </div>
+			</div>
+		  </li>
+		  </ul>
+		  {% endfor %}
+		  </div>
+		  </div>
+		</div>
+	  {% endif %}
+		{% if allow_comments %}
+		<div id="respond" class="ttblogcomments">
+		  <h4 id="reply-title" class="comment-reply-title">{{ button_comment_add }}</h4>
+		  <div id="add-comment">
+			{% if login_required  and  not is_logged %}
+				<div class="login-required alert alert-info"><i class="fa fa-info-circle"></i> {{ text_login_required }}</div>
+			{% else %}
+			<form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+			  <div class="form-group required">
+				<label class="col-sm-2 control-label" for="input-author">
+				{{ entry_author }}
+				</label>
+				<div class="col-sm-10">
+				  <input type="text" name="author" value="{{ author }}" id="input-author" placeholder="{{ entry_author }}" class="form-control" />
+				  {% if error_author %}
+				  <div class="text-danger">{{ error_author }}</div>
+				  {% endif %}
+				</div>
+			  </div>
+			  {% if is_logged %}
+			  	<input type="hidden" name="email" value="{{ email }}" id="input-email" />
+			  {% else %}
+			  <div class="form-group required">
+				<label class="col-sm-2 control-label" for="input-email">{{ entry_email }}</label>
+				<div class="col-sm-10">
+				  <input type="text" name="email" value="{{ email }}" id="input-email" placeholder="{{ entry_email }}" class="form-control" />
+				  {% if error_email %}
+				  <div class="text-danger">{{ error_email }}</div>
+				  {% endif %}
+				</div>
+			  </div>
+			  {% endif %}
+			  
+			  <div class="form-group required">
+				<label class="col-sm-2 control-label" for="input-comment">{{ entry_comment }}</label>
+				<div class="col-sm-10">
+				  <textarea name="comment" rows="10" id="input-comment" class="form-control" />{{ comment }}</textarea>
+				  {% if error_comment %}
+				  <div class="text-danger">{{ error_comment }}</div>
+				  {% endif %}
+				</div>
+			  </div>
+			  {{ captcha }}	
+			  <input type="hidden" name="auto_approve" value="{{ auto_approve }}" />
+			  <div class="buttons"><div class="pull-right"><input class="btn btn-primary" type="submit" value="{{ button_submit }}" /></div></div>
+			</form>
+			{% endif %} 
+		  </div>
+		  </div>
+		{% endif %}
+	  
+		</div>
+    {{ content_bottom }}</div>
+  {{ column_right }}</div>
+</div>
+{{ footer }}

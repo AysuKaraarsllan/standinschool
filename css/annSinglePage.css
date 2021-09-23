@@ -1,0 +1,52 @@
+
+         body{
+		 background-color:#DCDCDC;
+		 }
+		 
+        html, body {
+            height: auto;
+        }
+
+
+        .header-objects {
+            height: auto;
+            border-radius: 5px;
+            margin-top: 2px;
+        }
+
+        .govde-ici-div-border {
+            border: solid 1px;
+        }
+
+        .bottom-border-none { /*bu üst ve alt divlerde kesişen borderları göstermez*/
+            border-bottom: 0px !important;
+        }
+
+        .full-height {
+            height: auto;
+        }
+
+        .govde-divleri{
+            padding:20px;
+            height:auto;
+            border-radius:10px;
+        }
+
+        .sol-div {
+            height:20%;
+            border-radius:20px;
+        }
+
+.parallax {
+  /* The image used */
+  background-image: url("images/ybu6.jpg");
+
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,37 @@
+<div class="tt-category-featured">
+<div class="customNavigation">
+	<a class="btn prev ttfcat_prev"></a>
+	<a class="btn next ttfcat_next"></a>
+</div>
+<div class="box-heading"><h3>{{ heading_title1 }}</h3></div>
+<div class="ttfcat-items">
+<div class="category-feature tt-carousel row">
+  {% for category in categories %}
+	  <div class="item">
+		<div class="content">
+		  <div class="image col-sm-12">
+			<a href="{{ category.href }}">
+				<img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" />
+			</a>
+		  </div>
+		  <div class="caption col-sm-12">
+			<div class="cat-title">
+				<h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+			</div>
+			<div class="cat-sub">
+			  {% if category.children %}
+			  <ul>
+			  {% for child in category.children %}
+			  <li><a href="{{ child.href }}" class="list-group-item">{{ child.name }}</a></li>
+			  {% endfor %}
+			  </ul>
+			  {% endif %}
+		   </div>
+		  </div> <!-- Caption END -->
+		</div>
+	  </div>
+  {% endfor %}
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,277 @@
+
+body {
+  background: #F1F3FA;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+	font-family: MontserratBold;
+	src: url(fonts/Montserrat-Bold.ttf);
+}
+.navbar{
+  padding: 0.2rem 3rem;
+}
+
+.form-control{
+  border-radius: 0px;
+ padding: 0.20rem 3.75rem 0.20rem 0.700rem;
+}
+
+
+.active>.nav-link{
+  color: #07a5c0 !important;
+  font-weight: 500;
+  font-size: 13px;
+}
+.btn-outline-success {
+    color: #07a5c0;
+    border-color: #07a5c0;
+    border-radius: 0px;
+}
+
+a.nav-link:hover, a.nav-link:active{
+color: #07a5c0 !important;
+}
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 5px !important;
+  background: #fff;
+ 
+
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width:60px;
+  height:60px;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+ background-color: #F1F3FA !important;
+  min-height: 460px;
+}
+/*footer*/
+footer{
+	display: block;
+	margin-top: 16px;
+    background-color: transparent;
+    border-top: 1px solid #cfcfcf;
+}
+
+footer ul{
+	margin: 16px auto;
+    line-height: 24px;
+    text-align: center;
+    list-style-type: none;
+}
+
+.footer-list:first-child {
+	margin-left: 0;
+display: inline-block!important;
+font-size: 12px;}
+
+
+.footer-list{
+	margin-left: 20px;
+display: inline-block!important;
+font-size:12px;
+}
+.footerBottom{
+ line-height: 24px;
+    text-align: center;
+ text-align: center!important; 
+ clear: both!important;
+ font-size: 1.2rem;
+ font-weight: 400;
+    line-height: 1.33333;
+}
+/*ShareBox Css*/
+.share-box {
+    position: relative;
+    border-radius: 2px;
+    margin: 0;
+    background: #fff;
+    color: #84878a;
+    display: flex;
+    flex-direction: column;
+    min-height: 135px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+    transition: box-shadow 83ms;
+}
+
+/*POP-UP CSS*/
+
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+ 
+  background-clip: padding-box;
+  text-align: center;
+}
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+@media (min-width: 768px){
+.col-md-3 {
+    -ms-flex: 0 0 20% !important;
+    flex: 0 0 20% !important;
+    max-width: 20% !important;
+}}
+

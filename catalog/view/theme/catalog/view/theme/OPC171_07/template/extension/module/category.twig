@@ -1,0 +1,35 @@
+<div class="panel panel-default category-treeview">
+<div class="panel-heading">{{ heading_title2 }}</div>
+	<ul class="list-group">
+	  {% for category in categories %}
+	  {% if category.category_id == category_id %} 
+	  	<li class="category-li category-active">
+		  <a href="{{ category.href }}" class="list-group-item active">{{ category.name }}</a> 
+		  {% if category.children %}
+		  <ul>
+			  {% for child in category.children %}
+			  {% if child.category_id == child_id %}
+			  	<li><a href="{{ child.href }}" class="list-group-item current-child-item active">{{ child.name }}</a></li>
+			  {% else %} 
+			  	<li><a href="{{ child.href }}" class="list-group-item current-child-item">{{ child.name }}</a></li>
+			  {% endif %}
+			  {% endfor %}
+		  </ul>
+		  {% endif %}
+		</li>
+	  {% else %}
+	    <li class="category-li">
+			  	<a href="{{ category.href }}" class="list-group-item">{{ category.name }}</a>
+				<!-- Display all category - child items list -->
+				{% if category.children %}
+				<ul>
+					{% for child in category.children %}
+						<li><a href="{{ child.href }}" class="list-group-item child-item">{{ child.name }}</a></li>
+					{% endfor %}
+				</ul>
+			  {% endif %}
+			  </li>
+	  {% endif %}
+	  {% endfor %}
+	</ul>
+</div>

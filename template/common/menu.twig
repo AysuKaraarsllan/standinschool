@@ -1,0 +1,63 @@
+{% if categories %}
+<div class="menu-container">
+<div class="container">
+  <nav id="menu" class="navbar">
+	{# add class name as 'mega-menu' LIKE class="mega-menu" #}
+    <div class="navbar-header collapsed" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+		<span id="category" class="visible-xs">{{ text_category }}</span>
+     <!-- <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>-->
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+		{% for category in categories %}
+        {% if category.children %}
+        <li class="dropdown">
+			<a href="{{ category.href }}">{{ category.name }}</a>
+          <div class="dropdown-menu">
+          <div class="dropdown-inner">
+				 {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                 <ul class="list-unstyled childs_1 {% if category.column <=1 %} {{ 'single-dropdown-menu' }} {% else %} {{ 'mega-dropdown-menu' }} {% endif %}">
+               
+				{% for child in children %}		{# 2 Level Sub Categories START #}
+				{% if child.childs %}
+                <li class="dropdown"><a href="{{ child.href }}">{{ child.name }}</a>
+
+					<div class="dropdown-menu">
+          			<div class="dropdown-inner">
+ 					{% for childs_col in child.childs|batch(child.childs|length / child.column|round(1, 'ceil')) %}
+		        	 <ul class="list-unstyled childs_2">
+						{% for childs_2 in childs_col %}
+						  <li><a href="{{ childs_2.href }}">{{ childs_2.name }}</a></li>
+						{% endfor %}
+					 </ul>
+					{% endfor %}
+					 </div>
+					 </div>
+
+				</li>
+				{% else %}
+					<li><a href="{{ child.href }}">{{ child.name }}</a></li>
+				{% endif %}		{# 2 Level Sub Categories END #}
+			    {% endfor %}
+              </ul>
+              {% endfor %}
+			</div>
+			</div>
+
+			</li>
+		{% else %}
+            <li><a href="{{ category.href }}">{{ text_all }} {{ category.name }}</a></li>
+		{% endif %}
+		{% endfor %}
+		{% if blog_enable == true %}
+				<li> <a href="{{ all_blogs }}">
+				<span data-hover="{{ text_blog }}">{{ text_blog }}</span>
+				</a></li>       
+		{% endif %}		
+
+      	 </ul>
+      </div>
+    </nav>
+    </div>
+</div>
+{% endif %}

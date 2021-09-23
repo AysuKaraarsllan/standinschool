@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700' rel='stylesheet' type='text/css'> 
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--<link href="catalog/view/theme/{{ theme_path }}/stylesheet/TemplateTrip/bootstrap.min.css" rel="stylesheet" media="screen" />-->
+
+<link href="catalog/view/javascript/jquery/owl-carousel/owl.carousel.css" rel="stylesheet" media="screen" />
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/bootstrap.min.css" rel="stylesheet" media="screen" />
+<link href="catalog/view/theme/OPC171_07/stylesheet/stylesheet.css" rel="stylesheet">
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/ttblogstyle.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/ttcountdown.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/category-feature.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/animate.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/newsletter.css" rel="stylesheet" type="text/css" />
+{% if direction=='rtl' %}
+	<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/rtl.css" rel="stylesheet" type="text/css" />
+	<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/ttblogstyle-rtl.css" rel="stylesheet" type="text/css" />
+	<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/ttcountdown-rtl.css" rel="stylesheet" type="text/css" />
+	<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/newsletter-rtl.css" rel="stylesheet" type="text/css" />
+{% endif %}
+<link href="catalog/view/theme/OPC171_07/stylesheet/TemplateTrip/lightbox.css" rel="stylesheet" type="text/css" />
+
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+
+<script src="catalog/view/javascript/common.js"></script>
+
+<!-- TemplateTrip custom Theme JS START -->
+<script src="catalog/view/javascript/TemplateTrip/addonScript.js"></script>
+<script src="catalog/view/javascript/TemplateTrip/lightbox-2.6.min.js"></script>
+<script src="catalog/view/javascript/TemplateTrip/waypoints.min.js"></script>
+<script src="catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js"></script>
+<script src="catalog/view/javascript/TemplateTrip/tt_quickview.js"></script>
+<script src="catalog/view/javascript/TemplateTrip/bootstrap-notify.min.js"></script>
+<script src="catalog/view/javascript/TemplateTrip/ttcountdown.js"></script>
+<!-- TemplateTrip custom Theme JS END -->
+
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+
+{% for script in scripts %}
+<script src="{{ script }}"></script>
+{% endfor %}
+
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+</head>
+
+<body class="{{ class }}">
+<div id="page">
+<header>
+<nav id="top">
+  <div class="container">
+	<div class="header-top-left">
+		{% if header_left %}
+			<div class="header-left-cms">
+			 {{ header_left }}
+			</div>
+		{% endif %}
+		</div>
+	
+	
+	
+	<div class="header-top-right">
+		{%  if header_right %}
+			<div class="header-right-cms">
+			{{ header_right }}
+			</div>
+		{% endif %}
+   	<div id="top-links" class="nav pull-right">
+      <ul class="list-inline">
+			<li class="header-mail">
+				<a href="{{ contact }}"><i class="fa fa-envelope"></i>
+				<span>{{ email }}</span>
+				</a>
+			</li>
+			<li>{{ language }}</li>
+			<li>{{ currency }}</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</nav>
+
+{% if header_top %}
+<div class="header-top-cms">
+	{{ header_top }}
+</div>
+{% endif %}
+<div class="full-header">
+  <div class="container">
+	
+  	<div class="header-left">
+        <div id="logo">
+			{% if logo %}
+				<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+			{% else %}
+          		<h1><a href="{{ home }}">{{ name }}</a></h1>
+          {% endif %}
+      </div>
+    </div>
+				<div class="search col-sm-7">{{ search }}</div>
+	 
+		  
+		<div class="header-right">
+
+		  <div class="user-info">
+		  <div class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i>
+ <span class="ttuserheading">{{ text_account }}</span><i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu dropdown-menu-right account-link-toggle">
+            {% if logged %}
+            <li><a href="{{ account }}"><i class='fa fa-user'></i> {{ text_account }}</a></li>
+            <li><a href="{{ order }}"><i class='fa fa-calendar'></i> {{ text_order }}</a></li>
+            <li><a href="{{ transaction }}"><i class='fa fa-credit-card'></i> {{ text_transaction }}</a></li>
+            <li><a href="{{ download }}"><i class='fa fa-download'></i> {{ text_download }}</a></li>
+            <li><a href="{{ logout }}"><i class='fa fa-sign-out'></i> {{ text_logout }}</a></li>
+			<li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i> <span class="hidden-sm hidden-md">{{ text_wishlist }}</span></a></li>
+            {% else %}
+            <li><a href="{{ register }}"><i class='fa fa-user'></i> {{ text_register }}</a></li>
+            <li><a href="{{ login }}"><i class='fa fa-sign-in'></i> {{ text_login }}</a></li>
+			<li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i> <span class="hidden-sm hidden-md">{{ text_wishlist }}</span></a></li>
+            {% endif %}
+          </ul>
+		  </div>
+        </div>
+		  <div class="cart">{{ cart }}</div>
+		</div>
+					{% if header_bottom %}
+				<div class="header-bottom col-sm-3">
+				{{ header_bottom }}
+				</div>
+			 {% endif %}
+				</div>
+
+	<!--{% if header_left %}
+	<div class="header-left-cms col-sm-3">
+	 {{ header_left }}
+	</div>
+	{% endif %}-->
+  </div>
+</header>
+<div class="header-bottom-block">
+<div class="container">
+		 <!--<div class="header-phone pull-left">
+			<a href="{{ contact }}"><i class="fa fa-phone"></i>
+			<div class="contact-title"> whatsapp: </div>
+			<span>{{ telephone }}</span></a>
+		  </div>-->
+		  <div id="tttoplink_block">
+		  <h3 class="title_block">Go quick to</h3>
+		 <ul id="tt_toplink" class="block_content">
+			  <li class="tttoplink tthome"><a title="home" href="#">Home</a></li>
+			  <li class="tttoplink"><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+			  <li class="tttoplink"><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+			  <li class="tttoplink"><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+			  <li class="tttoplink"><a href="{{ contact }}">{{ text_contact }}</a></li>
+			  <li class="tttoplink"><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+			{% if blog_enable == true %}
+				<li class="tttoplink"> <a href="{{ all_blogs }}">
+				<span data-hover="{{ text_blog }}">{{ text_blog }}</span>
+			</a></li>       
+		{% endif %}
+			</ul>
+		</div>
+</div>
+</div>
+<div class="header-content-title">
+<div class="container">
+</div>
+</div>

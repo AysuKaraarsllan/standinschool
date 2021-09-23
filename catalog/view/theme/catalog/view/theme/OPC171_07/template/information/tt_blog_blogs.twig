@@ -1,0 +1,74 @@
+{{ header }}
+<div class="container">
+  <ul class="breadcrumb">
+	{% for breadcrumb in breadcrumbs %}
+	<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+	{% endfor %}
+  </ul>
+  <div class="row">{{ column_left }}
+	{% if column_left  and  column_right %}
+	{% set class = 'col-sm-6' %}
+	 {% elseif  column_left  or  column_right %}
+	{% set class = 'col-sm-9' %}
+	 {% else %}
+	{% set class = 'col-sm-12' %}
+	{% endif %}
+	<div id="content" class="{{ class }}">
+	  {{ content_top }}
+	  <h1>{{ text_blogs }}</h1>
+	  {% if blogs %}
+	  {% for blog in blogs %}
+	  <div class="panel-default blog-page cat-blog-content" id="module-ttblog-category">
+		<h4 class="blog-cat-title">{{ blog.name }}</h4>
+		<div id="ttblogcat">
+		{% if blog.blog_data %}
+			{% for topic in blog.blog_data %}
+			<div class="blog-item col-xs-12 col-sm-12">
+			  <div class="ttblogpost">
+				  {% if topic.image %}
+				  <div class="article-content col-sm-5">
+					<a itemprop="url" href="{{ topic.href }}" title="{{ heading_title }}" class="imageFeaturedLink">
+						<img itemprop="image" alt="{{ heading_title }}" src="{{ topic.image }}" class="imageFeatured" />
+						<div class="blog-hover"></div>
+					</a>
+					<span class="bloglinks">
+						<a class="icon zoom" data-lightbox="example-set" href="{{ topic.image }}" title="Click to view Full Image" >
+						<i class="fa fa-search"></i></a> 
+					</span>
+				  </div>
+				  {% endif %}
+				  <div class="out-content-blog col-sm-7">
+					<div class="article-header">
+					  <h4 class="blog-title"><a href="{{ topic.href }}">{{ topic.title }}</a></h4>
+					  <div class="blog-tool">
+					  <span class="date-time">{{ topic.date_added }}</span>
+					  <span class="comment"> <i class="fa fa-comment-o"></i> <a title="{{ topic.total_comments ~ ' ' ~ entry_comment }}" href="{{ topic.href }}">{{ topic.total_comments }} {{ entry_comment }}</a> </span>
+					  </div>
+					</div>
+					<div class="sdsarticle-des">
+						<div itemprop="description" class="clearfix">
+							<div class="blog-desc">{{ topic.description }}</div>
+						</div>
+					</div>
+					<div class="sdsreadMore">
+						<span class="more"><a title="{{ topic.href }}" href="{{ topic.href }}" class="r_more">{{ text_read_more }}</a></span>
+					</div>
+				  </div>
+			  </div>
+			</div>
+			{% endfor %}
+			{% else %}
+				<div class="no-post-found col-xs-12 col-sm-12">{{ text_no_blogs }}</div>
+			{% endif %}
+		{% endfor %}		
+       {% else %}
+     	 <div class="no-blog-found col-xs-12 col-sm-12">{{ text_no_blogs }}</div>
+	 {% endif %} 
+    {{ content_bottom }}
+	</div>
+  {{ column_right }}
+  </div>
+  </div>
+</div>
+</div>
+{{ footer }}

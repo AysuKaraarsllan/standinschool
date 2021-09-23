@@ -1,0 +1,132 @@
+<div class="ttcat-main">
+<div class="TTProduct-Tab TT-cat-carousel products-list">
+<div class="tt-titletab">
+	<div class="box-heading tthometab-title"><h3>{{ cat_heading_title }}</h3></div>
+		<div id="TTCTab-{{ module }}" class="tab-box-heading">
+		<ul class="nav nav-tabs">
+			{% for category in categories %}
+				{% if loop.index0 == 0 %}
+					{% set class = ' class="active"'%}
+				{% else %}
+					{% set class = ''%}
+				{% endif %}
+				<li {{class}}><a href="#tab-{{loop.index}}" data-toggle="tab">{{category.category}}</a></li>
+			{% endfor %}
+			</ul>
+	</div>
+</div>
+<div class="tab-content">
+
+{% for products in categories %}
+{% if loop.index0 == 0 %}
+	{% set class = ' active in' %}
+{% else %}
+	{% set class = ''%}
+{% endif %}
+{% set cnt_spe = 1 %}
+{% set tcnt_spe = products.products|length %}
+
+  <div class="tab-pane fade	{{class}} row" id="tab-{{loop.index}}">
+  <div class="TTcategory-tab products-carousel">
+	{% for product in products.products %}
+		{% if tcnt_spe >= 6 %}
+		{% if cnt_spe % 2 == 1 %}
+			<div class='single-column'>
+		{% endif %}
+		{% endif %}
+	
+	 <div class="product-layouts">
+		<div class="product-thumb transition">
+			<div class="image col-sm-5 col-xs-5">
+			  {% if product.thumb_swap %}
+				<a href="{{ product.href }}">
+				  <img class="image_thumb" src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" />
+				  <img class="image_thumb_swap" src="{{ product.thumb_swap }}" title="{{ product.name }}" alt="{{ product.name }}" />
+				</a>
+			  {% else %}
+				<a href="{{ product.href }}">
+				  <img class="img-responsive" src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" />
+				</a>
+			  {% endif %}
+
+			  {% if product.special %}
+				<div class="sale-icon">Sale</div>
+				<span class="percent">-{{ product.percent }}%</span>
+			  {% endif %}
+			  	<button class="btn-wishlist" title="{{ button_wishlist }}"  onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i>
+				<span title="{{ button_wishlist }}">{{ button_wishlist }}</span>
+				</button>
+
+			</div>
+
+			<div class="thumb-description col-sm-7 col-xs-7">
+			<div class="caption">
+				<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+				<!--<p class="description">{{ product.description }}</p>-->
+			
+				{% if product.rating %}
+				<div class="rating">
+				{% else %}
+					<div class="rating no-rating">
+				{% endif %}
+				  {% for i in 1..5 %}
+				  {% if product.rating < i %}
+				  <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
+				  {% else %}
+				  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+				  {% endif %}
+				   {% endfor %}
+				</div>
+				
+				{% if product.price %}
+				<div class="price">
+				  {% if not product.special %}
+					{{ product.price }}
+				  {% else %}
+					<span class="price-new">{{ product.special }}</span> 
+					<span class="price-old">{{ product.price }}</span>
+				  {% endif %}
+	
+				  {% if product.tax %}
+				  <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+				  {% endif %} 
+				</div>
+			  {% endif %}
+			</div>
+			  <div class="button-group">
+				<button class="btn-cart{% if product.product_quantity<=0 %} {{ "disabled" }} {% endif %}" type="button" title="{% if product.product_quantity <=0 %}{{ product.product_stock }}{% else %}{{ button_cart }}{% endif %}" onclick="{% if product.product_quantity <=0 %}{% else %}cart.add('{{ product.product_id }}'){% endif %}"{% if product.product_quantity <=0 %}{{ "" }} {% endif %}>
+				 {% if product.product_quantity <=0 %}
+					{{ "<i class=\"fa fa-shopping-cart\"></i><span class=\"out of stock\">"~product.product_stock }}
+					{% else %} 
+					{{ "<i class=\"fa fa-shopping-cart\"></i> <span class=\"hidden-xs hidden-sm hidden-md\">"~button_cart }}
+				{% endif %}
+				</span></button>
+				<button class="btn-compare" title="{{ button_compare }}"  onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i>
+				<span title="{{ button_compare }}">{{ button_compare }}</span>
+				</button>
+				<button class="btn-quickview" type="button" title="{{ button_quickview }}" onclick="tt_quickview.ajaxView('{{ product.href }}')"><i class="fa fa-eye"></i>
+				<span title="{{ button_quickview }}">{{ button_quickview }}</span>
+		</button>
+			  </div>
+			</div>		
+		</div>
+	</div>
+  		{% if tcnt_spe >= 6 %}
+		{% if cnt_spe % 2 == 0 %}
+			</div>
+		{% endif %}
+		{% endif %}
+		{% set cnt_spe = cnt_spe + 1 %}
+    {% endfor %} 
+
+		{% if tcnt_spe >= 6 %}
+		{% if tcnt_spe % 2 != 0 %}
+			</div>
+		{% endif %} 
+		{% endif %}
+  </div>
+  </div>
+{% endfor %}
+</div>
+</div>
+</div>

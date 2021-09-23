@@ -1,0 +1,11 @@
+{% if modules %}
+<aside id="footer-top">
+<div class="container">
+<div class="row">
+	{% for module in modules %}
+  {{ module }}
+ {% endfor %}
+</div>
+</div>
+</aside>
+{% endif %}

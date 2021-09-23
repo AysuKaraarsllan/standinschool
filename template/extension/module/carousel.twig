@@ -1,0 +1,60 @@
+<div class="brand-main">
+<div class="brand-carousel">
+<div class="box-heading"><h3>{{ brand_heading_title }}</h3></div>
+<div class="swiper-viewport">
+  <div id="carousel{{ module }}" class="swiper-container brand-items">
+    <div class="swiper-wrapper">
+	  {% for banner in banners %}
+      <div class="swiper-slide text-center">
+	  {% if banner.link %}
+	  <a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>
+	  {% else %}
+	  <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+	  {% endif %}
+	  </div>
+      {% endfor %}
+	  </div>
+  </div>
+  <div class="swiper-pagination carousel{{ module }}"></div>
+  <div class="swiper-pager">
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+</div>
+</div>
+<script><!--
+$('#carousel{{ module }}').swiper({
+	mode: 'horizontal',
+	autoplay: 3000,
+	//pagination: '.carousel{{ module }}',
+	pagination: false,
+	paginationClickable: false,
+    prevButton: '.swiper-button-prev',
+	nextButton: '.swiper-button-next',
+	
+ // Default parameters
+  slidesPerView: 6,
+  
+  // Responsive breakpoints
+  breakpoints: {
+	    // when window width is <= 1200px
+	    1200: {
+	      slidesPerView: 5
+	    },
+	 	// when window width is <= 991px
+	    991: {
+	      slidesPerView: 4
+	    },
+	 	// when window width is <= 767px
+	    767: {
+	      slidesPerView: 3
+	    },
+	    // when window width is <= 480px
+	    480: {
+	      slidesPerView: 2
+		}
+   }
+
+});
+--></script>
